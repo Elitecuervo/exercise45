@@ -1,0 +1,24 @@
+apply plugin: 'java'
+
+
+libsDirName = 'jar'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/oata'
+        }
+    }
+} 
+
+jar {
+    baseName = 'HelloWorld'
+    manifest {
+        attributes 'Main-Class': 'oata.HelloWorld'
+    }
+}
+
+
+task runJar(dependsOn:jar) << {
+  javaexec { main="-jar"; args jar.archivePath } 
+}
